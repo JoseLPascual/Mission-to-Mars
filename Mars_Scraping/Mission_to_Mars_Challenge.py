@@ -5,15 +5,14 @@ import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
 
-executable_path = {'executable_path': ChromeDriverManager().install()}
-browser = Browser('chrome', **executable_path, headless=False)
-
 def scrape_all():
     # Initiate headless driver for deployment
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=True)
 
     news_title, news_paragraph = mars_news(browser)
+
+    hemisphere_image_urls = []
 
     # Run all scraping functions and store results in a dictionary
     data = {
@@ -95,6 +94,3 @@ img_url = f'https://marshemispheres.com/images/{img_url_rel}'
 
 # 4. Print the list that holds the dictionary of each image url and title.
 hemisphere_image_urls
-
-# 5. Quit the browser
-browser.quit()
